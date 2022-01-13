@@ -1,3 +1,4 @@
+import Favicon from 'src/components/Favicon/Favicon'
 import Navigation from 'src/components/Navigation/Navigation'
 
 type PublicLayoutProps = {
@@ -7,6 +8,7 @@ type PublicLayoutProps = {
 const PublicLayout = ({ children }: PublicLayoutProps) => {
   return (
     <>
+      <Favicon />
       <Navigation />
       <main className="px-10 pt-5">{children}</main>
     </>
