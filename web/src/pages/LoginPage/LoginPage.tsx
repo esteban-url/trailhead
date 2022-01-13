@@ -27,21 +27,23 @@ const LoginPage = () => {
       <h1>Login</h1>
       <Form className="flex flex-col w-1/4 mt-4 space-y-4" onSubmit={onSubmit}>
         {error && (
-          <span className="p-2 text-center text-red-900 bg-red-300 rounded">
+          <span className="p-2 text-center text-red-900 bg-red-300 rounded dark:bg-red-400/90">
             {error}
           </span>
         )}
         <TextField
-          className="p-2 border-2 border-gray-100 rounded"
+          className="p-2 border-2 border-gray-100 rounded dark:border-dark-700 dark:bg-dark-800 dark:text-dark-400 dark:placeholder-dark-700"
           name="email"
           placeholder="email"
         />
         <PasswordField
-          className="p-2 border-2 border-gray-100 rounded"
+          className="p-2 border-2 border-gray-100 rounded dark:border-dark-700 dark:bg-dark-800 dark:text-dark-400 dark:placeholder-dark-700"
           name="password"
           placeholder="password"
         />
-        <Submit className="p-2 bg-gray-200 rounded">Sign In</Submit>
+        <Submit className="p-2 rounded bg-primary-600 text-stone-50 dark:text-stone-200 dark:bg-primary-700">
+          Sign In
+        </Submit>
       </Form>
     </>
   )

@@ -1,4 +1,3 @@
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const PrivatePage = () => {
@@ -6,14 +5,8 @@ const PrivatePage = () => {
     <>
       <MetaTags title="Private" description="Private page" />
 
-      <h1>PrivatePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/PrivatePage/PrivatePage.tsx</code>
-      </p>
-      <p>
-        My default route is named <code>private</code>, link to me with `
-        <Link to={routes.private()}>Private</Link>`
-      </p>
+      <h1 className="mb-8 text-xl font-extrabold">Private page</h1>
+      <p>This page can only be accessed when you are logged in.</p>
     </>
   )
 }
