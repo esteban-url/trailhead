@@ -1,11 +1,11 @@
 import { render } from '@redwoodjs/testing/web'
 
-import PrivatePage from './PrivatePage'
+import MembersPage from './MembersPage'
 
-describe('PrivatePage', () => {
+describe('MembersPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<PrivatePage />)
+      render(<MembersPage />)
     }).not.toThrow()
   })
 })

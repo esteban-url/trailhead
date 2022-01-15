@@ -3,16 +3,18 @@ import { Link, navigate, routes } from '@redwoodjs/router'
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
 
 const Navigation = () => {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, hasRole } = useAuth()
+  console.log(hasRole('admin'), '<<<<<<')
+
   return (
     <nav className="flex px-10 py-5 space-x-5 bg-primary-700 dark:bg-primary-900 text-primary-50">
       <Link className="font-bold" to={routes.home()}>
         Trailhead
       </Link>
-
+      {hasRole('admin') ? <Link to={routes.users()}>Users</Link> : null}
       {isAuthenticated ? (
         <>
-          <Link to={routes.private()}>Private</Link>
+          <Link to={routes.members()}>Members</Link>
           <SignoutButton />
         </>
       ) : (

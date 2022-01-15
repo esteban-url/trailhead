@@ -17,24 +17,26 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={[PublicLayout]}>
-        <Set wrap={[AdminLayout]}>
-          <Set wrap={UserRolesLayout}>
-            <Route path="/user-roles/new" page={UserRoleNewUserRolePage} name="newUserRole" />
-            <Route path="/user-roles/{id:Int}/edit" page={UserRoleEditUserRolePage} name="editUserRole" />
-            <Route path="/user-roles/{id:Int}" page={UserRoleUserRolePage} name="userRole" />
-            <Route path="/user-roles" page={UserRoleUserRolesPage} name="userRoles" />
+        <Private unauthenticated="members" role={['admin']}>
+          <Set wrap={[AdminLayout]}>
+            <Set wrap={UserRolesLayout}>
+              <Route path="/user-roles/new" page={UserRoleNewUserRolePage} name="newUserRole" />
+              <Route path="/user-roles/{id:Int}/edit" page={UserRoleEditUserRolePage} name="editUserRole" />
+              <Route path="/user-roles/{id:Int}" page={UserRoleUserRolePage} name="userRole" />
+              <Route path="/user-roles" page={UserRoleUserRolesPage} name="userRoles" />
+            </Set>
+            <Set wrap={UsersLayout}>
+              <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+              <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+              <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
+              <Route path="/users" page={UserUsersPage} name="users" />
+            </Set>
           </Set>
-          <Set wrap={UsersLayout}>
-            <Route path="/users/new" page={UserNewUserPage} name="newUser" />
-            <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-            <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-            <Route path="/users" page={UserUsersPage} name="users" />
-          </Set>
-        </Set>
+        </Private>
         <Route path="/sign-up" page={SignUpPage} name="signUp" />
         <Route path="/login" page={LoginPage} name="login" />
         <Private unauthenticated="login">
-          <Route path="/private" page={PrivatePage} name="private" />
+          <Route path="/members" page={MembersPage} name="members" />
         </Private>
         <Route path="/" page={HomePage} name="home" />
       </Set>

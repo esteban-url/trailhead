@@ -14,7 +14,7 @@ const LoginPage = () => {
       logIn(data).then((res) =>
         res?.error?.message
           ? setError(res.error.message)
-          : navigate(routes.private())
+          : navigate(routes.members())
       )
     } catch (error) {
       setError(error.message)
