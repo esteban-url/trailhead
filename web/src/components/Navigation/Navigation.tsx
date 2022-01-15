@@ -4,7 +4,6 @@ import { ThemeToggle } from '../ThemeToggle/ThemeToggle'
 
 const Navigation = () => {
   const { isAuthenticated, hasRole } = useAuth()
-  console.log(hasRole('admin'), '<<<<<<')
 
   return (
     <nav className="flex px-10 py-5 space-x-5 bg-primary-700 dark:bg-primary-900 text-primary-50">
