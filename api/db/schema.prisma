@@ -28,3 +28,13 @@ model UserRole {
 
   @@unique([name, userId])
 }
+
+model Announcement {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  title       String
+  body        String
+  active      Boolean @default(true)
+  expiration  DateTime
+}
