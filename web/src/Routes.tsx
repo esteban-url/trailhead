@@ -8,12 +8,29 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Router, Route, Set, Private } from '@redwoodjs/router'
+import UserRolesLayout from 'src/layouts/UserRolesLayout'
+import UsersLayout from 'src/layouts/UsersLayout'
+import AdminLayout from './layouts/AdminLayout/AdminLayout'
 import PublicLayout from './layouts/PublicLayout/PublicLayout'
 
 const Routes = () => {
   return (
     <Router>
       <Set wrap={[PublicLayout]}>
+        <Set wrap={[AdminLayout]}>
+          <Set wrap={UserRolesLayout}>
+            <Route path="/user-roles/new" page={UserRoleNewUserRolePage} name="newUserRole" />
+            <Route path="/user-roles/{id:Int}/edit" page={UserRoleEditUserRolePage} name="editUserRole" />
+            <Route path="/user-roles/{id:Int}" page={UserRoleUserRolePage} name="userRole" />
+            <Route path="/user-roles" page={UserRoleUserRolesPage} name="userRoles" />
+          </Set>
+          <Set wrap={UsersLayout}>
+            <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+            <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+            <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
+            <Route path="/users" page={UserUsersPage} name="users" />
+          </Set>
+        </Set>
         <Route path="/sign-up" page={SignUpPage} name="signUp" />
         <Route path="/login" page={LoginPage} name="login" />
         <Private unauthenticated="login">
