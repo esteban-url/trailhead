@@ -1,5 +1,5 @@
-import { parseJWT } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
+import { db } from './db'
 
 /**
  * Represents the user attributes returned by the decoding the
@@ -27,22 +27,51 @@ type RedwoodUser = Record<string, unknown> & { roles?: string[] }
  *
  * @returns RedwoodUser
  */
-export const getCurrentUser = async (
-  decoded,
-  { token, type },
-  { event, context }
-): Promise<RedwoodUser> => {
+// export const getCurrentUser = async (
+//   decoded,
+//   { token, type },
+//   { event, context }
+// ): Promise<RedwoodUser> => {
+//   if (!decoded) {
+//     return null
+//   }
+
+//   const { roles } = parseJWT({ decoded })
+
+//   if (roles) {
+//     return { ...decoded, roles }
+//   }
+
+//   return { ...decoded }
+// }
+
+/**
+ *
+ * @param decoded - The decoded access token containing user info and JWT claims like `sub`. Note could be null.
+ * @returns RedwoodUser
+ *
+ * !! BEWARE !! Anything returned from this function will be available to the
+ * client--it becomes the content of `currentUser` on the web side (as well as
+ * `context.currentUser` on the api side). You should carefully add additional
+ * fields to the return object only once you've decided they are safe to be seen
+ * if someone were to open the Web Inspector in their browser.
+
+ */
+export const getCurrentUser = async (decoded): Promise<RedwoodUser> => {
   if (!decoded) {
     return null
   }
 
-  const { roles } = parseJWT({ decoded })
+  const userRoles = await db.userRole.findMany({
+    where: { user: { uuid: decoded.sub } },
+    select: { name: true },
+  })
 
-  if (roles) {
-    return { ...decoded, roles }
-  }
+  const roles = userRoles.map((role) => {
+    return role.name
+  })
 
-  return { ...decoded }
+  return context.currentUser || { roles }
 }
 
 /**
