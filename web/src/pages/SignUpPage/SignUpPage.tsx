@@ -2,7 +2,6 @@ import { Form, TextField, PasswordField, Submit } from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@apollo/client'
-import { StringValueNode } from 'graphql'
 
 const CREATE_USER_MUTATION = gql`
   mutation CreateUserMutation($input: CreateUserInput!) {
@@ -25,7 +24,7 @@ const SignUpPage = () => {
     },
   })
 
-  const onSubmit = (data: { email: StringValueNode; password: string }) => {
+  const onSubmit = (data: { email: string; password: string }) => {
     setError(null)
     try {
       signUp({ email: data.email, password: data.password }).then((res) => {
@@ -59,7 +58,7 @@ const SignUpPage = () => {
           {error ||
             (saveError && (
               <span className="p-2 text-center text-red-900 bg-red-300 rounded dark:bg-red-400/90">
-                {error} {saveError}
+                {error || saveError}
               </span>
             ))}
           <TextField

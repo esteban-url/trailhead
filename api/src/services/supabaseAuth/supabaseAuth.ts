@@ -1,3 +1,4 @@
+import { RedwoodGraphQLError } from '@redwoodjs/graphql-server'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
@@ -11,63 +12,95 @@ export interface CreateSupabaseUserArgs {
 
 export const createSupabaseUser = async ({ input }: CreateSupabaseUserArgs) => {
   try {
-    const { data: error } = await supabase.auth.api.createUser({
+    const { data: user, error } = await supabase.auth.api.createUser({
       email: input.email,
       password: input.password,
     })
     if (error) {
-      console.error(error)
+      throw new RedwoodGraphQLError(error.message)
     }
+    return { uuid: user.id, email: user.email }
   } catch (error) {
-    console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }
 
-export const resetPasswordForEmail = async ({ email }: { email: string }) => {
+export const signUpSupabaseUser = async ({ input }: CreateSupabaseUserArgs) => {
   try {
-    const { data: error } = await supabase.auth.api.resetPasswordForEmail(email)
+    const { data, error } = await supabase.auth.api.signUpWithEmail(
+      input.email,
+      input.password
+    )
+
     if (error) {
-      console.error(error)
+      throw new RedwoodGraphQLError(error.message)
+    }
+    console.log({ data })
+
+    if ('id' in data) {
+      return { uuid: data.id, email: data.email }
     }
   } catch (error) {
+    throw new RedwoodGraphQLError(error.message)
+  }
+}
+
+export const resetPasswordForEmail = async (email: string) => {
+  try {
+    const { data, error } = await supabase.auth.api.resetPasswordForEmail(email)
+    if (error) {
+      console.error(error)
+      throw new RedwoodGraphQLError(error.message)
+    }
+    return data
+  } catch (error) {
     console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }
 
 export const sendMobileOTP = async ({ phone }: { phone: string }) => {
   try {
-    const { data: error } = await supabase.auth.api.sendMobileOTP(phone)
+    const { data, error } = await supabase.auth.api.sendMobileOTP(phone)
     if (error) {
       console.error(error)
+      throw new RedwoodGraphQLError(error.message)
     }
+    return data
   } catch (error) {
     console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }
 
-export const inviteUserByEmail = async ({ email }: { email: string }) => {
+export const inviteUserByEmail = async (email: string) => {
   try {
-    const { data: error } = await supabase.auth.api.inviteUserByEmail(email)
+    const { data, error } = await supabase.auth.api.inviteUserByEmail(email)
+
     if (error) {
       console.error(error)
+      throw new RedwoodGraphQLError(error.message)
     }
+    return data
   } catch (error) {
     console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }
 
 export const deleteSupabaseUser = async ({ uuid }: { uuid: string }) => {
   try {
-    const { data: error } = await supabase.auth.api.deleteUser(
+    const { error } = await supabase.auth.api.deleteUser(
       uuid,
       process.env.SUPABASE_SERVICE_KEY
     )
-    if (error) {
+    if (error && error.status !== 404) {
       console.error(error)
+      throw new RedwoodGraphQLError(error.message)
     }
-    return uuid
   } catch (error) {
     console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }
 
@@ -89,13 +122,13 @@ export const generateMagicLink = async (
 ) => {
   return generateLink('magiclink', email, options)
 }
-export const generateRecoverylink = async (
+export const generateRecoveryLink = async (
   email: string,
   options?: OptionsArgs
 ) => {
   return generateLink('recovery', email, options)
 }
-export const generateInviteink = async (
+export const generateInviteLink = async (
   email: string,
   options?: OptionsArgs
 ) => {
@@ -108,15 +141,18 @@ const generateLink = async (
   options?: OptionsArgs
 ) => {
   try {
-    const { data: error } = await supabase.auth.api.generateLink(
+    const { data, error } = await supabase.auth.api.generateLink(
       type,
       email,
       options
     )
     if (error) {
       console.error(error)
+      throw new RedwoodGraphQLError(error.message)
     }
+    return data
   } catch (error) {
     console.error(error)
+    throw new RedwoodGraphQLError(error.message)
   }
 }

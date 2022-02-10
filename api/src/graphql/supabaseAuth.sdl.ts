@@ -1,9 +1,7 @@
 export const schema = gql`
   type SupabaseUser {
+    uuid: String!
     email: String!
-    password: String!
-    createdAt: DateTime!
-    updatedAt: DateTime!
   }
 
   input CreateSupabaseUserInput {
@@ -24,18 +22,19 @@ export const schema = gql`
   type Mutation {
     createSupabaseUser(input: CreateSupabaseUserInput!): SupabaseUser!
       @requireAuth
+    signUpSupabaseUser(input: CreateSupabaseUserInput!): SupabaseUser!
+      @requireAuth
     resetPasswordForEmail(email: String!): Boolean @requireAuth
     sendMobileOTP(phone: String!): Boolean @requireAuth
     inviteUserByEmail(email: String!): Boolean @requireAuth
-    deleteSupabaseUser(uuid: String!): String! @requireAuth
-
+    deleteSupabaseUser(uuid: String!): Boolean @requireAuth
     generateSignupLink(email: String!, options: OptionsInput): Boolean
       @requireAuth
     generateMagicLink(email: String!, options: OptionsInput): Boolean
       @requireAuth
-    generateRecoverylink(email: String!, options: OptionsInput): Boolean
+    generateRecoveryLink(email: String!, options: OptionsInput): Boolean
       @requireAuth
-    generateInviteink(email: String!, options: OptionsInput): Boolean
+    generateInviteLink(email: String!, options: OptionsInput): Boolean
       @requireAuth
   }
 `

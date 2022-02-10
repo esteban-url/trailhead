@@ -5,13 +5,8 @@ import {
   Label,
   TextField,
   Submit,
+  PasswordField,
 } from '@redwoodjs/forms'
-
-const formatDatetime = (value) => {
-  if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
-  }
-}
 
 const UserForm = (props) => {
   const onSubmit = (data) => {
@@ -27,23 +22,6 @@ const UserForm = (props) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-        <Label
-          name="uuid"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Uuid
-        </Label>
-        <TextField
-          name="uuid"
-          defaultValue={props.user?.uuid}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-        <FieldError name="uuid" className="rw-field-error" />
-
         <Label
           name="email"
           className="rw-label"
@@ -59,13 +37,28 @@ const UserForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="email" className="rw-field-error" />
+        {props.hidePassword ? null : (
+          <>
+            <Label
+              name="password"
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Password
+            </Label>
+            <PasswordField
+              name="password"
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+              validation={{ required: true }}
+            />
+            <FieldError name="password" className="rw-field-error" />
+          </>
+        )}
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
-            Save
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+            {props.buttonLabel || 'Save'}
           </Submit>
         </div>
       </Form>
