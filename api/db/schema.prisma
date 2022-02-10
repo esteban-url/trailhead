@@ -12,7 +12,7 @@ generator client {
 model User {
   id        Int        @id @default(autoincrement())
   uuid      String     @unique
-  email     String
+  email     String     @unique
   createdAt DateTime   @default(now())
   updatedAt DateTime   @default(now())
   userRoles UserRole[]
