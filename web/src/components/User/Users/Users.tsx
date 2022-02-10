@@ -12,6 +12,12 @@ const DELETE_USER_MUTATION = gql`
   }
 `
 
+const DELETE_SUPABASEUSER_MUTATION = gql`
+  mutation DeleteSupabaseUserMutation($uuid: String!) {
+    deleteSupabaseUser(uuid: $uuid)
+  }
+`
+
 const MAX_STRING_LENGTH = 150
 
 const truncate = (text) => {
@@ -22,10 +28,6 @@ const truncate = (text) => {
   return output
 }
 
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
-
 const timeTag = (datetime) => {
   return (
     <time dateTime={datetime} title={datetime}>
@@ -34,15 +36,17 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
-
 const UsersList = ({ users }) => {
-  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
+  const [deleteSupabaseUser] = useMutation(DELETE_SUPABASEUSER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+  })
+
+  const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onError: (error) => {
       toast.error(error.message)
     },
@@ -53,9 +57,11 @@ const UsersList = ({ users }) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id) => {
-    if (confirm('Are you sure you want to delete user ' + id + '?')) {
-      deleteUser({ variables: { id } })
+  const onDeleteClick = (user) => {
+    if (confirm('Are you sure you want to delete user ' + user.email + '?')) {
+      deleteUser({ variables: { id: user.id } }).then(() => {
+        deleteSupabaseUser({ variables: { uuid: user.uuid } })
+      })
     }
   }
 
@@ -100,7 +106,7 @@ const UsersList = ({ users }) => {
                     type="button"
                     title={'Delete user ' + user.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(user.id)}
+                    onClick={() => onDeleteClick(user)}
                   >
                     Delete
                   </button>
