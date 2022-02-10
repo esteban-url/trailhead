@@ -44,7 +44,7 @@ To be able to run supabase locally, follow this steps:
 npm install -g supabase
 ```
 
-2- initiallice it in your project
+2- initialize it in your project
 ```sh
 supabase init
 ```
