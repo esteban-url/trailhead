@@ -7,9 +7,10 @@ module.exports = {
       colors: {
         primary: colors.emerald,
         secondary: colors.sky,
+        gray: colors.stone,
         dark: colors.stone,
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
