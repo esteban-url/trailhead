@@ -1,3 +1,6 @@
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(' ')
+}
 const Pagination = ({
   previousPage,
   pageLimit = 7,
@@ -11,10 +14,10 @@ const Pagination = ({
   canNextPage,
 }) => {
   /**
-   * This is the index of the last page
-   * substract 1 from the page limit to use as the beakpoint index
+   * This is the index of the last page.
+   * Use the smaller number in case there are less pages (pageCount) than the page limit (pageLimit)
    */
-  const breakpoint: number = pageLimit - 1
+  const breakpoint: number = Math.min(pageLimit - 1, pageCount - 1)
   /**
    * this is the index of the middle of the page link
    */
@@ -61,19 +64,8 @@ const Pagination = ({
    */
   const after: number = Math.min(breakpoint - before, pagesToLast)
 
-  const PagingButton = ({ page }) => {
-    return (
-      <button
-        onClick={() => gotoPage(page - 1)}
-        aria-current="page"
-        className="relative inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
-      >
-        {page}
-      </button>
-    )
-  }
-
   if (pageCount === 0) return null
+
   return (
     <div className="flex items-center justify-between px-4 py-3 bg-white border-gray-200 sm:px-6">
       <div className="flex justify-between flex-1 sm:hidden">
@@ -102,67 +94,107 @@ const Pagination = ({
             of <span className="font-medium">{rowsCount}</span> results
           </p>
         </div>
-        <div>
-          <nav
-            className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
-            aria-label="Pagination"
-          >
-            {pageCount > 1 ? (
-              <>
-                <button
-                  onClick={() => gotoPage(0)}
-                  disabled={!canPreviousPage}
-                  className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50"
-                >
-                  <span className="sr-only">First</span>
-                  &lt; &lt;
-                </button>
-                <button
-                  onClick={() => previousPage()}
-                  disabled={!canPreviousPage}
-                  className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Previous</span>
-                  &lt;
-                </button>
-              </>
-            ) : null}
-            {[...Array(before).keys()].map((i, index, items) => (
-              <PagingButton
-                page={pageIndex + index - items.length + 1}
-                key={'b_' + i}
-              />
-            ))}
-            <span className="relative z-10 inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium border text-primary-600 border-primary-500 bg-primary-50">
-              {pageIndex + 1}
-            </span>
-            {[...Array(after).keys()].map((i, index) => (
-              <PagingButton page={pageIndex + index + 2} key={'a_' + i} />
-            ))}
+        {pageCount > 1 ? (
+          <div>
+            <nav
+              className="relative z-0 inline-flex -space-x-px rounded-md shadow-sm"
+              aria-label="Pagination"
+            >
+              <JumpButton
+                onClick={() => gotoPage(0)}
+                roundedLeft={true}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">First</span>
+                &lt; &lt;
+              </JumpButton>
+              <JumpButton
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                <span className="sr-only">Previous</span>
+                &lt;
+              </JumpButton>
 
-            {pageCount > 1 ? (
-              <>
-                <button
-                  onClick={() => nextPage()}
-                  disabled={!canNextPage}
-                  className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Next</span>
-                  &gt;
-                </button>
-                <button
-                  onClick={() => gotoPage(pageCount - 1)}
-                  className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50"
-                >
-                  <span className="sr-only">Last</span>
-                  &gt;&gt;
-                </button>
-              </>
-            ) : null}
-          </nav>
-        </div>
+              {[...Array(before).keys()].map((i, index, items) => (
+                <PageButton
+                  gotoPage={gotoPage}
+                  page={pageIndex + index - items.length + 1}
+                  key={'b_' + i}
+                />
+              ))}
+              <CurrentPage>{pageIndex + 1}</CurrentPage>
+              {[...Array(after).keys()].map((i, index) => (
+                <PageButton
+                  gotoPage={gotoPage}
+                  page={pageIndex + index + 2}
+                  key={'a_' + i}
+                />
+              ))}
+
+              <JumpButton onClick={() => nextPage()} disabled={!canNextPage}>
+                <span className="sr-only">Next</span>
+                &gt;
+              </JumpButton>
+              <JumpButton
+                roundedRight={true}
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                <span className="sr-only">Last</span>
+                &gt;&gt;
+              </JumpButton>
+            </nav>
+          </div>
+        ) : null}
       </div>
     </div>
+  )
+}
+
+const PageButton = ({ page, gotoPage }) => {
+  return (
+    <button
+      onClick={() => gotoPage(page - 1)}
+      aria-current="page"
+      className="relative inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
+    >
+      {page}
+    </button>
+  )
+}
+
+const JumpButton = ({
+  children,
+  className = '',
+  disabled,
+  onClick,
+  roundedLeft = false,
+  roundedRight = false,
+  ...rest
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={classNames(
+        'relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 ',
+        roundedRight ? 'rounded-r-md' : null,
+        roundedLeft ? 'rounded-l-md' : null,
+        disabled ? 'cursor-auto' : 'hover:bg-gray-50',
+        className
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  )
+}
+
+const CurrentPage = ({ children }) => {
+  return (
+    <span className="relative z-10 inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium border text-primary-600 border-primary-500 bg-primary-50">
+      {children}
+    </span>
   )
 }
 
