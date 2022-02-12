@@ -8,7 +8,7 @@ import {
   useAsyncDebounce,
 } from 'react-table'
 import { matchSorter } from 'match-sorter'
-import Select from 'src/components/Select/Select'
+import Select from 'src/components/common/Select/Select'
 import { Link, routes } from '@redwoodjs/router'
 import Pagination from './Pagination/Pagination'
 import NoResults from '../NoResults/NoResults'
