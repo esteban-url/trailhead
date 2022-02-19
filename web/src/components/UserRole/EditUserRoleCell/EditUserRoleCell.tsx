@@ -37,28 +37,38 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ userRole }: CellSuccessProps<EditUserRoleById>) => {
-  const [updateUserRole, { loading, error }] = useMutation(UPDATE_USER_ROLE_MUTATION, {
-    onCompleted: () => {
-      toast.success('UserRole updated')
-      navigate(routes.userRoles())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const [updateUserRole, { loading, error }] = useMutation(
+    UPDATE_USER_ROLE_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('UserRole updated')
+        navigate(routes.userRoles())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, { userId: parseInt(input.userId), })
+    const castInput = Object.assign(input, { userId: parseInt(input.userId) })
     updateUserRole({ variables: { id, input: castInput } })
   }
 
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit UserRole {userRole.id}</h2>
+        <h2 className="rw-heading rw-heading-secondary">
+          Edit UserRole {userRole.id}
+        </h2>
       </header>
       <div className="rw-segment-main">
-        <UserRoleForm userRole={userRole} onSave={onSave} error={error} loading={loading} />
+        <UserRoleForm
+          userRole={userRole}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

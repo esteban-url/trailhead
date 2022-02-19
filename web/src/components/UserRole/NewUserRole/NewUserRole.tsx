@@ -12,18 +12,21 @@ const CREATE_USER_ROLE_MUTATION = gql`
 `
 
 const NewUserRole = () => {
-  const [createUserRole, { loading, error }] = useMutation(CREATE_USER_ROLE_MUTATION, {
-    onCompleted: () => {
-      toast.success('UserRole created')
-      navigate(routes.userRoles())
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const [createUserRole, { loading, error }] = useMutation(
+    CREATE_USER_ROLE_MUTATION,
+    {
+      onCompleted: () => {
+        toast.success('UserRole created')
+        navigate(routes.userRoles())
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
 
   const onSave = (input) => {
-    const castInput = Object.assign(input, { userId: parseInt(input.userId), })
+    const castInput = Object.assign(input, { userId: parseInt(input.userId) })
     createUserRole({ variables: { input: castInput } })
   }
 

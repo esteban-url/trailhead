@@ -23,10 +23,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No userRoles yet. '}
-      <Link
-        to={routes.newUserRole()}
-        className="rw-link"
-      >
+      <Link to={routes.newUserRole()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

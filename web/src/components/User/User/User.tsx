@@ -51,23 +51,29 @@ const User = ({ user }) => {
     <>
       <div className="rw-segment">
         <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">User {user.id} Detail</h2>
+          <h2 className="rw-heading rw-heading-secondary">
+            User {user.id} Detail
+          </h2>
         </header>
         <table className="rw-table">
           <tbody>
             <tr>
               <th>Id</th>
               <td>{user.id}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Uuid</th>
               <td>{user.uuid}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Email</th>
               <td>{user.email}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Created at</th>
               <td>{timeTag(user.createdAt)}</td>
-            </tr><tr>
+            </tr>
+            <tr>
               <th>Updated at</th>
               <td>{timeTag(user.updatedAt)}</td>
             </tr>

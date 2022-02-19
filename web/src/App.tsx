@@ -10,9 +10,9 @@ import './scaffold.css'
 import './index.css'
 
 const supabaseClient = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_KEY
-  )
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
+)
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>

@@ -41,7 +41,7 @@ const LoginPage = () => {
           name="password"
           placeholder="password"
         />
-        <Submit className="p-2 rounded bg-primary-600 text-stone-50 dark:text-stone-200 dark:bg-primary-700">
+        <Submit className="p-2 rounded bg-primary-600 dark:bg-primary-700 text-stone-50 dark:text-stone-200">
           Sign In
         </Submit>
       </Form>

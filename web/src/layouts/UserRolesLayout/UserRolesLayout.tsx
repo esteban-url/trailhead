@@ -11,17 +11,11 @@ const UserRolesLayout = ({ children }: UserRoleLayoutProps) => {
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <header className="rw-header">
         <h1 className="rw-heading rw-heading-primary">
-          <Link
-            to={routes.userRoles()}
-            className="rw-link"
-          >
+          <Link to={routes.userRoles()} className="rw-link">
             UserRoles
           </Link>
         </h1>
-        <Link
-          to={routes.newUserRole()}
-          className="rw-button rw-button-green"
-        >
+        <Link to={routes.newUserRole()} className="rw-button rw-button-green">
           <div className="rw-button-icon">+</div> New UserRole
         </Link>
       </header>
