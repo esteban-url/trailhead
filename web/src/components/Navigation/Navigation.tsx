@@ -18,7 +18,7 @@ const Navigation = () => {
         </>
       ) : (
         <>
-          <Link to={routes.login()}>Login</Link>
+          <Link to={routes.signIn()}>Login</Link>
           <Link to={routes.signUp()}>Sign Up</Link>
         </>
       )}
