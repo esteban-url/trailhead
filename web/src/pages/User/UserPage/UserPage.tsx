@@ -1,7 +1,7 @@
 import UserCell from 'src/components/User/UserCell'
 
 type UserPageProps = {
-  id: Int
+  id: number
 }
 
 const UserPage = ({ id }: UserPageProps) => {

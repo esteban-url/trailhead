@@ -11,9 +11,8 @@ const Select = ({
   label?: string
   name: string
   onChange: React.ChangeEventHandler<HTMLElement>
-  [x: string]: unknown
 }) => {
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLElement>) => {
     onChange(event)
   }
   return (

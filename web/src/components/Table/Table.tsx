@@ -20,7 +20,11 @@ const Table = ({ columns, data, actions }) => {
       fuzzyText: fuzzyTextFilterFn,
       // Or, override the default text filter to use
       // "startWith"
-      text: (rows, id, filterValue) => {
+      text: (
+        rows: { values: unknown[] }[],
+        id: string | number,
+        filterValue: string
+      ) => {
         return rows.filter((row) => {
           const rowValue = row.values[id]
           return rowValue !== undefined
@@ -71,7 +75,7 @@ const Table = ({ columns, data, actions }) => {
             name="pageSizeSelect"
             label="Resuls per page:"
             defaultValue={10}
-            onChange={(event) => {
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setPageSize(Number(event.target.value))
             }}
           >
@@ -237,7 +241,11 @@ const GlobalFilter = ({
     </div>
   )
 }
-const fuzzyTextFilterFn = (rows, id, filterValue) => {
+const fuzzyTextFilterFn = (
+  rows: { values: unknown[] }[],
+  id: string | number,
+  filterValue: string
+) => {
   return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] })
 }
 

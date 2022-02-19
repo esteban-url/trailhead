@@ -1,14 +1,13 @@
 import { render } from '@redwoodjs/testing/web'
-
-import Table from './Table'
+import { Button } from './Button'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('Table', () => {
+describe('Button', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Table {...{ columns: null, data: null, actions: null }} />)
+      render(<Button />)
     }).not.toThrow()
   })
 })

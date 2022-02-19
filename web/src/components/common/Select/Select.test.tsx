@@ -8,7 +8,19 @@ import Select from './Select'
 describe('Select', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Select />)
+      render(
+        <Select
+          {...{
+            defaultValue: 'a',
+            name: 'selectA',
+            onChange: () => console.log('onChange'),
+          }}
+        >
+          <option>a</option>
+          <option>b</option>
+          <option>c</option>
+        </Select>
+      )
     }).not.toThrow()
   })
 })
