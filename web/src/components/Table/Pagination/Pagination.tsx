@@ -1,6 +1,5 @@
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
+import { classNames } from 'src/utils'
+
 const Pagination = ({
   previousPage,
   pageLimit = 7,
@@ -67,24 +66,24 @@ const Pagination = ({
   if (pageCount === 0) return null
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-white border-gray-200 sm:px-6">
-      <div className="flex justify-between flex-1 sm:hidden">
+    <div className="flex items-center justify-between border-gray-200 bg-white px-4 py-3 sm:px-6">
+      <div className="flex flex-1 justify-between sm:hidden">
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
-          className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Previous
         </button>
         <button
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          className="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
         >
           Next
         </button>
       </div>
-      <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
             Showing <span className="font-medium">{pageIndex + 1} </span> to{' '}
@@ -157,7 +156,7 @@ const PageButton = ({ page, gotoPage }) => {
     <button
       onClick={() => gotoPage(page - 1)}
       aria-current="page"
-      className="relative inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-300 hover:bg-gray-50"
+      className="relative inline-flex w-10 items-center justify-center border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-500 hover:bg-gray-50"
     >
       {page}
     </button>
@@ -177,7 +176,7 @@ const JumpButton = ({
     <button
       onClick={onClick}
       className={classNames(
-        'relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 ',
+        'relative inline-flex items-center border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 ',
         roundedRight ? 'rounded-r-md' : null,
         roundedLeft ? 'rounded-l-md' : null,
         disabled ? 'cursor-auto' : 'hover:bg-gray-50',
@@ -192,7 +191,7 @@ const JumpButton = ({
 
 const CurrentPage = ({ children }) => {
   return (
-    <span className="relative z-10 inline-flex items-center justify-center w-10 px-4 py-2 text-sm font-medium border text-primary-600 border-primary-500 bg-primary-50">
+    <span className="text-primary-600 border-primary-500 bg-primary-50 relative z-10 inline-flex w-10 items-center justify-center border px-4 py-2 text-sm font-medium">
       {children}
     </span>
   )

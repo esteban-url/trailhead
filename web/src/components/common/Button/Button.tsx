@@ -1,9 +1,6 @@
 import { Submit as RwSubmit } from '@redwoodjs/forms'
 import { Link } from '@redwoodjs/router'
-
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
+import { classNames } from 'src/utils'
 
 const commonClasses = `inline-flex items-center border border-transparent shadow-sm text-white font-medium focus:outline-none focus:ring-2 ring-offset-current focus:ring-offset-2 `
 const variantClasses = {

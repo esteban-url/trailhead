@@ -1,7 +1,6 @@
 import { FieldError, Label } from '@redwoodjs/forms'
-const classNames = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
+import { classNames } from 'src/utils'
+
 type FormFieldProps<P = unknown> = {
   as: React.ComponentType<P> | React.ElementType
   name: string
