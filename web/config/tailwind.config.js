@@ -6,11 +6,14 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.emerald,
-        secondary: colors.sky,
+        secondary: colors.teal,
         gray: colors.stone,
         dark: colors.stone,
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }

@@ -38,8 +38,8 @@ const Routes = () => {
         <Private unauthenticated="signIn">
           <Route path="/members" page={MembersPage} name="members" />
         </Private>
-        <Route path="/" page={HomePage} name="home" />
       </Set>
+      <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )
