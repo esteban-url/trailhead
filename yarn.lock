@@ -22453,6 +22453,7 @@ __metadata:
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
     autoprefixer: "npm:^10.4.17"
+    humanize-string: "npm:2.1.0"
     postcss: "npm:^8.4.35"
     postcss-loader: "npm:^8.1.0"
     react: "npm:18.2.0"
