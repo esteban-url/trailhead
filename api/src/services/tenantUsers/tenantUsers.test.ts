@@ -35,13 +35,13 @@ describe('tenantUsers', () => {
     const result = await createTenantUser({
       input: {
         userId: scenario.tenantUser.two.userId,
-        tenantId: scenario.tenantUser.two.tenantId,
+        tenantId: scenario.tenantUser.one.tenantId,
         updatedAt: '2024-02-22T20:01:58.402Z',
       },
     })
 
     expect(result.userId).toEqual(scenario.tenantUser.two.userId)
-    expect(result.tenantId).toEqual(scenario.tenantUser.two.tenantId)
+    expect(result.tenantId).toEqual(scenario.tenantUser.one.tenantId)
     expect(result.updatedAt).toEqual(new Date('2024-02-22T20:01:58.402Z'))
   })
 
