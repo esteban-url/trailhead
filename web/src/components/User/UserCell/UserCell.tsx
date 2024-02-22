@@ -17,7 +17,6 @@ export const QUERY: TypedDocumentNode<
       id
       email
       name
-      role
       createdAt
       updatedAt
     }

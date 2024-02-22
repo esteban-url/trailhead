@@ -21,7 +21,6 @@ export const QUERY: TypedDocumentNode<EditUserById> = gql`
       id
       email
       name
-      role
       createdAt
       updatedAt
     }
@@ -37,7 +36,6 @@ const UPDATE_USER_MUTATION: TypedDocumentNode<
       id
       email
       name
-      role
       createdAt
       updatedAt
     }

@@ -3,16 +3,10 @@ export const schema = gql`
     id: String!
     email: String!
     name: String!
-    role: GlobalRole!
     tenants: [TenantUser]!
     Annoucement: [Annoucement]!
     createdAt: DateTime!
     updatedAt: DateTime!
-  }
-
-  enum GlobalRole {
-    USER
-    ADMIN
   }
 
   type Query {
@@ -23,13 +17,11 @@ export const schema = gql`
   input CreateUserInput {
     email: String!
     name: String!
-    role: GlobalRole!
   }
 
   input UpdateUserInput {
     email: String
     name: String
-    role: GlobalRole
   }
 
   type Mutation {

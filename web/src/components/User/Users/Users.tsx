@@ -10,7 +10,7 @@ import type { TypedDocumentNode } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/User/UsersCell'
-import { formatEnum, timeTag, truncate } from 'src/lib/formatters'
+import { timeTag, truncate } from 'src/lib/formatters'
 
 const DELETE_USER_MUTATION: TypedDocumentNode<
   DeleteUserMutation,
@@ -52,7 +52,6 @@ const UsersList = ({ users }: FindUsers) => {
             <th>Id</th>
             <th>Email</th>
             <th>Name</th>
-            <th>Role</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>&nbsp;</th>
@@ -64,7 +63,6 @@ const UsersList = ({ users }: FindUsers) => {
               <td>{truncate(user.id)}</td>
               <td>{truncate(user.email)}</td>
               <td>{truncate(user.name)}</td>
-              <td>{formatEnum(user.role)}</td>
               <td>{timeTag(user.createdAt)}</td>
               <td>{timeTag(user.updatedAt)}</td>
               <td>
