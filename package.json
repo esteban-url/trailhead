@@ -10,7 +10,8 @@
     "@redwoodjs/core": "7.0.1",
     "@redwoodjs/project-config": "7.0.1",
     "@redwoodjs/realtime": "7.0.1",
-    "@redwoodjs/studio": "11"
+    "@redwoodjs/studio": "11",
+    "prettier-plugin-tailwindcss": "0.4.1"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
