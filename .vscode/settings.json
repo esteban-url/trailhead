@@ -1,11 +1,19 @@
 {
-  "editor.tabSize": 2,
-  "files.trimTrailingWhitespace": true,
-  "editor.formatOnSave": false,
+  "[prisma]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "deno.enablePaths": [
+    "supabase/functions"
+  ],
+  "deno.lint": true,
+  "deno.unstable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "[prisma]": {
-    "editor.formatOnSave": true
-  }
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true
 }
