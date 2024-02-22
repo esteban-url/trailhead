@@ -5,7 +5,7 @@
 // https://www.prisma.io/docs/orm/prisma-migrate
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -14,11 +14,59 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+enum GlobalRole {
+  USER
+  ADMIN
+}
+
+enum TenantUserRole {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model Tenant {
+  id        String       @id() @default(uuid())
+  slug      String       @unique
+  name      String
+  members   TenantUser[]
+  announcements Annoucement[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model TenantUser {
+  id        String         @id() @default(uuid())
+  userId    String
+  tenantId  String
+  roleId    String
+  user      User           @relation(fields: [userId], references: [id])
+  tenant    Tenant         @relation(fields: [tenantId], references: [id])
+  role      TenantUserRole @default(MEMBER)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  @@unique([userId, tenantId])
+}
+
+model User {
+  id        String       @id() @default(uuid())
+  email     String       @unique
+  name      String
+  role      GlobalRole   @default(USER)
+  tenants   TenantUser[]
+  Annoucement Annoucement[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Annoucement {
+  id        String   @id() @default(uuid())
+  tenantId  String
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
 }
