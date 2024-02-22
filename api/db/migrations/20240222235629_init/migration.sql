@@ -1,8 +1,5 @@
 -- CreateEnum
-CREATE TYPE "GlobalRole" AS ENUM ('USER', 'ADMIN');
-
--- CreateEnum
-CREATE TYPE "TenantUserRole" AS ENUM ('OWNER', 'ADMIN', 'MEMBER');
+CREATE TYPE "TenantUserRole" AS ENUM ('ADMIN', 'MEMBER', 'OWNER', 'REQUESTED', 'SUPERADMIN');
 
 -- CreateTable
 CREATE TABLE "Tenant" (
@@ -20,8 +17,7 @@ CREATE TABLE "TenantUser" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "tenantId" TEXT NOT NULL,
-    "roleId" TEXT NOT NULL,
-    "role" "TenantUserRole" NOT NULL DEFAULT 'MEMBER',
+    "role" "TenantUserRole" NOT NULL DEFAULT 'REQUESTED',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -33,7 +29,6 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "role" "GlobalRole" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
