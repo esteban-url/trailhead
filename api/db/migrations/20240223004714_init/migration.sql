@@ -36,7 +36,7 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Annoucement" (
+CREATE TABLE "Announcement" (
     "id" TEXT NOT NULL,
     "tenantId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE "Annoucement" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Annoucement_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Announcement_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -63,7 +63,7 @@ ALTER TABLE "TenantUser" ADD CONSTRAINT "TenantUser_userId_fkey" FOREIGN KEY ("u
 ALTER TABLE "TenantUser" ADD CONSTRAINT "TenantUser_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Annoucement" ADD CONSTRAINT "Annoucement_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Announcement" ADD CONSTRAINT "Announcement_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Annoucement" ADD CONSTRAINT "Annoucement_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Announcement" ADD CONSTRAINT "Announcement_tenantId_fkey" FOREIGN KEY ("tenantId") REFERENCES "Tenant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

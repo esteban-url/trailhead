@@ -4,7 +4,7 @@ export const schema = gql`
     slug: String!
     name: String!
     members: [TenantUser]!
-    announcements: [Annoucement]!
+    announcements: [Announcement]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }

@@ -4,7 +4,7 @@ export const schema = gql`
     email: String!
     name: String!
     tenants: [TenantUser]!
-    Annoucement: [Annoucement]!
+    Announcement: [Announcement]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }

@@ -39,7 +39,7 @@ export const User: UserRelationResolvers = {
   tenants: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).tenants()
   },
-  Annoucement: (_obj, { root }) => {
-    return db.user.findUnique({ where: { id: root?.id } }).Annoucement()
+  Announcement: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).Announcement()
   },
 }

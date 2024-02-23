@@ -23,13 +23,13 @@ enum TenantUserRole {
 }
 
 model Tenant {
-  id        String       @id() @default(uuid())
-  slug      String       @unique
-  name      String
-  members   TenantUser[]
-  announcements Annoucement[]
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  id            String         @id() @default(uuid())
+  slug          String         @unique
+  name          String
+  members       TenantUser[]
+  announcements Announcement[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 }
 
 model TenantUser {
@@ -46,16 +46,16 @@ model TenantUser {
 }
 
 model User {
-  id        String       @id() @default(uuid())
-  email     String       @unique
-  name      String
-  tenants   TenantUser[]
-  Annoucement Annoucement[]
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  id           String         @id() @default(uuid())
+  email        String         @unique
+  name         String
+  tenants      TenantUser[]
+  Announcement Announcement[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
 }
 
-model Annoucement {
+model Announcement {
   id        String   @id() @default(uuid())
   tenantId  String
   userId    String
