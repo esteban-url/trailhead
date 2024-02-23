@@ -7,9 +7,9 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/core": "7.0.1",
-    "@redwoodjs/project-config": "7.0.1",
-    "@redwoodjs/realtime": "7.0.1",
+    "@redwoodjs/core": "7.0.2",
+    "@redwoodjs/project-config": "7.0.2",
+    "@redwoodjs/realtime": "7.0.2",
     "@redwoodjs/studio": "11",
     "prettier-plugin-tailwindcss": "0.4.1"
   },
