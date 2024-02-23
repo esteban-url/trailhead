@@ -1,4 +1,5 @@
 import { render } from '@redwoodjs/testing/web'
+
 import { Loading, Empty, Failure, Success } from './AnnouncementBoardCell'
 import { standard } from './AnnouncementBoardCell.mock'
 
@@ -35,7 +36,7 @@ describe('AnnouncementBoardCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success announcementBoard={standard().announcementBoard} />)
+      render(<Success announcements={standard().announcements} />)
     }).not.toThrow()
   })
 })

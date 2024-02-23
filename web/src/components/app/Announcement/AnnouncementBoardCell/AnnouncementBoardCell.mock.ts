@@ -1,6 +1,4 @@
 // Define your own mock data here:
 export const standard = (/* vars, { ctx, req } */) => ({
-  announcementBoard: {
-    id: 42,
-  },
+  announcements: [{ id: 42 }, { id: 43 }, { id: 44 }],
 })

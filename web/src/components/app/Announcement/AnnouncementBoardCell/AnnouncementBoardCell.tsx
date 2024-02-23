@@ -9,8 +9,6 @@ import type {
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
-import AnnouncementBoard from '../AnnouncementBoard/AnnouncementBoard'
-
 export const QUERY: TypedDocumentNode<
   FindAnnouncementsByTenant,
   FindAnnouncementsByTenantVariables
@@ -42,5 +40,15 @@ export const Success = ({
   FindAnnouncementsByTenant,
   FindAnnouncementsByTenantVariables
 >) => {
-  return <AnnouncementBoard announcements={announcements} />
+  return (
+    <div>
+      <h2 className="text-xl font-bold">Announcements:</h2>
+      {announcements.map((announcement) => (
+        <div key={announcement.id}>
+          <h3>{announcement.message}</h3>
+          <p>{announcement.createdAt}</p>
+        </div>
+      ))}
+    </div>
+  )
 }
