@@ -34,6 +34,7 @@ const Routes = () => {
           <Route path="/app/{tenantSlug}/users/{id}" page={AppUserUserPage} name="user" />
           <Route path="/app/{tenantSlug}/users" page={AppUserUsersPage} name="users" />
         </Set>
+        <Route path="/app/{tenantSlug}" page={AppDashboardPage} name="dashboard" />
       </Set>
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />

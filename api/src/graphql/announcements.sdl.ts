@@ -13,6 +13,7 @@ export const schema = gql`
   type Query {
     announcements: [Announcement!]! @requireAuth
     announcement(id: String!): Announcement @requireAuth
+    announcementsByTenantSlug(tenantSlug: String!): [Announcement!] @requireAuth
   }
 
   input CreateAnnouncementInput {

@@ -9,6 +9,18 @@ import { db } from 'src/lib/db'
 export const announcements: QueryResolvers['announcements'] = () => {
   return db.announcement.findMany()
 }
+export const announcementsByTenantSlug: QueryResolvers['announcementsByTenantSlug'] =
+  ({ tenantSlug }) => {
+    return db.announcement.findMany({
+      where: {
+        tenant: {
+          is: {
+            slug: tenantSlug,
+          },
+        },
+      },
+    })
+  }
 
 export const announcement: QueryResolvers['announcement'] = ({ id }) => {
   return db.announcement.findUnique({
