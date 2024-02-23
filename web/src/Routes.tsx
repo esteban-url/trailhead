@@ -17,22 +17,22 @@ const Routes = () => {
     <Router>
       <Set wrap={AppLayout}>
         <Set wrap={ScaffoldLayout} title="Tenants" titleTo="tenants" buttonLabel="New Tenant" buttonTo="newTenant">
-          <Route path="/app/admin/tenants/new" page={TenantNewTenantPage} name="newTenant" />
-          <Route path="/app/admin/tenants/{id}/edit" page={TenantEditTenantPage} name="editTenant" />
-          <Route path="/app/admin/tenants/{id}" page={TenantTenantPage} name="tenant" />
-          <Route path="/app/admin/tenants" page={TenantTenantsPage} name="tenants" />
+          <Route path="/app/admin/tenants/new" page={AppAdminTenantNewTenantPage} name="newTenant" />
+          <Route path="/app/admin/tenants/{id}/edit" page={AppAdminTenantEditTenantPage} name="editTenant" />
+          <Route path="/app/admin/tenants/{id}" page={AppAdminTenantTenantPage} name="tenant" />
+          <Route path="/app/admin/tenants" page={AppAdminTenantTenantsPage} name="tenants" />
         </Set>
         <Set wrap={ScaffoldLayout} title="Announcements" titleTo="announcements" buttonLabel="New Announcement" buttonTo="newAnnouncement">
-          <Route path="/app/{tenantSlug}/announcements/new" page={AnnouncementNewAnnouncementPage} name="newAnnouncement" />
-          <Route path="/app/{tenantSlug}/announcements/{id}/edit" page={AnnouncementEditAnnouncementPage} name="editAnnouncement" />
-          <Route path="/app/{tenantSlug}/announcements/{id}" page={AnnouncementAnnouncementPage} name="announcement" />
-          <Route path="/app/{tenantSlug}/announcements" page={AnnouncementAnnouncementsPage} name="announcements" />
+          <Route path="/app/{tenantSlug}/announcements/new" page={AppAnnouncementNewAnnouncementPage} name="newAnnouncement" />
+          <Route path="/app/{tenantSlug}/announcements/{id}/edit" page={AppAnnouncementEditAnnouncementPage} name="editAnnouncement" />
+          <Route path="/app/{tenantSlug}/announcements/{id}" page={AppAnnouncementAnnouncementPage} name="announcement" />
+          <Route path="/app/{tenantSlug}/announcements" page={AppAnnouncementAnnouncementsPage} name="announcements" />
         </Set>
         <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
-          <Route path="/app/{tenantSlug}/users/new" page={UserNewUserPage} name="newUser" />
-          <Route path="/app/{tenantSlug}/users/{id}/edit" page={UserEditUserPage} name="editUser" />
-          <Route path="/app/{tenantSlug}/users/{id}" page={UserUserPage} name="user" />
-          <Route path="/app/{tenantSlug}/users" page={UserUsersPage} name="users" />
+          <Route path="/app/{tenantSlug}/users/new" page={AppUserNewUserPage} name="newUser" />
+          <Route path="/app/{tenantSlug}/users/{id}/edit" page={AppUserEditUserPage} name="editUser" />
+          <Route path="/app/{tenantSlug}/users/{id}" page={AppUserUserPage} name="user" />
+          <Route path="/app/{tenantSlug}/users" page={AppUserUsersPage} name="users" />
         </Set>
       </Set>
       <Route path="/" page={HomePage} name="home" />
