@@ -4,7 +4,7 @@ import type {
   FindUserById,
 } from 'types/graphql'
 
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { Link, routes, navigate, useParams } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import type { TypedDocumentNode } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -27,10 +27,11 @@ interface Props {
 }
 
 const User = ({ user }: Props) => {
+  const { tenantSlug } = useParams()
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
-      navigate(routes.users())
+      navigate(routes.users({ tenantSlug }))
     },
     onError: (error) => {
       toast.error(error.message)
@@ -78,7 +79,7 @@ const User = ({ user }: Props) => {
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editUser({ id: user.id })}
+          to={routes.editUser({ id: user.id, tenantSlug })}
           className="rw-button rw-button-blue"
         >
           Edit

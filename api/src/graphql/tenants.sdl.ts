@@ -12,6 +12,8 @@ export const schema = gql`
   type Query {
     tenants: [Tenant!]! @requireAuth
     tenant(id: String!): Tenant @requireAuth
+    # Custom resolvers
+    tenantBySlug(slug: String!): Tenant @requireAuth
   }
 
   input CreateTenantInput {

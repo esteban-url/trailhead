@@ -4,7 +4,7 @@ import type {
   FindAnnouncementById,
 } from 'types/graphql'
 
-import { Link, routes, navigate } from '@redwoodjs/router'
+import { Link, routes, navigate, useParams } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import type { TypedDocumentNode } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -27,10 +27,11 @@ interface Props {
 }
 
 const Announcement = ({ announcement }: Props) => {
+  const { tenantSlug } = useParams()
   const [deleteAnnouncement] = useMutation(DELETE_ANNOUNCEMENT_MUTATION, {
     onCompleted: () => {
       toast.success('Announcement deleted')
-      navigate(routes.announcements())
+      navigate(routes.announcements({ tenantSlug }))
     },
     onError: (error) => {
       toast.error(error.message)
@@ -82,7 +83,7 @@ const Announcement = ({ announcement }: Props) => {
       </div>
       <nav className="rw-button-group">
         <Link
-          to={routes.editAnnouncement({ id: announcement.id })}
+          to={routes.editAnnouncement({ id: announcement.id, tenantSlug })}
           className="rw-button rw-button-blue"
         >
           Edit

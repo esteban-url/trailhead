@@ -4,7 +4,7 @@ import type {
   UpdateAnnouncementMutationVariables,
 } from 'types/graphql'
 
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, useParams } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -56,12 +56,13 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = ({
   announcement,
 }: CellSuccessProps<EditAnnouncementById>) => {
+  const { tenantSlug } = useParams()
   const [updateAnnouncement, { loading, error }] = useMutation(
     UPDATE_ANNOUNCEMENT_MUTATION,
     {
       onCompleted: () => {
         toast.success('Announcement updated')
-        navigate(routes.announcements())
+        navigate(routes.announcements({ tenantSlug }))
       },
       onError: (error) => {
         toast.error(error.message)

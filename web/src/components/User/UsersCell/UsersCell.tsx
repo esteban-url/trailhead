@@ -1,6 +1,6 @@
 import type { FindUsers, FindUsersVariables } from 'types/graphql'
 
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes, useParams } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -24,10 +24,11 @@ export const QUERY: TypedDocumentNode<FindUsers, FindUsersVariables> = gql`
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => {
+  const { tenantSlug } = useParams()
   return (
     <div className="rw-text-center">
       {'No users yet. '}
-      <Link to={routes.newUser()} className="rw-link">
+      <Link to={routes.newUser({ tenantSlug })} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

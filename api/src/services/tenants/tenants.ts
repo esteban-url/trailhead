@@ -46,3 +46,11 @@ export const Tenant: TenantRelationResolvers = {
     return db.tenant.findUnique({ where: { id: root?.id } }).announcements()
   },
 }
+
+// Custom resolvers
+
+export const tenantBySlug: QueryResolvers['tenantBySlug'] = ({ slug }) => {
+  return db.tenant.findUnique({
+    where: { slug },
+  })
+}

@@ -4,7 +4,7 @@ import type {
   FindUsers,
 } from 'types/graphql'
 
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes, useParams } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import type { TypedDocumentNode } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -24,6 +24,7 @@ const DELETE_USER_MUTATION: TypedDocumentNode<
 `
 
 const UsersList = ({ users }: FindUsers) => {
+  const { tenantSlug } = useParams()
   const [deleteUser] = useMutation(DELETE_USER_MUTATION, {
     onCompleted: () => {
       toast.success('User deleted')
@@ -68,14 +69,14 @@ const UsersList = ({ users }: FindUsers) => {
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.user({ id: user.id })}
+                    to={routes.user({ id: user.id, tenantSlug })}
                     title={'Show user ' + user.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editUser({ id: user.id })}
+                    to={routes.editUser({ id: user.id, tenantSlug })}
                     title={'Edit user ' + user.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >

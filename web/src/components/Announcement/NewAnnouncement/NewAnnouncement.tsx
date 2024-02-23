@@ -4,7 +4,7 @@ import type {
   CreateAnnouncementMutationVariables,
 } from 'types/graphql'
 
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, useParams } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import type { TypedDocumentNode } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
@@ -23,12 +23,13 @@ const CREATE_ANNOUNCEMENT_MUTATION: TypedDocumentNode<
 `
 
 const NewAnnouncement = () => {
+  const { tenantSlug } = useParams()
   const [createAnnouncement, { loading, error }] = useMutation(
     CREATE_ANNOUNCEMENT_MUTATION,
     {
       onCompleted: () => {
         toast.success('Announcement created')
-        navigate(routes.announcements())
+        navigate(routes.announcements({ tenantSlug }))
       },
       onError: (error) => {
         toast.error(error.message)

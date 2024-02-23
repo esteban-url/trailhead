@@ -3,7 +3,7 @@ import type {
   FindAnnouncementsVariables,
 } from 'types/graphql'
 
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes, useParams } from '@redwoodjs/router'
 import type {
   CellSuccessProps,
   CellFailureProps,
@@ -31,10 +31,11 @@ export const QUERY: TypedDocumentNode<
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => {
+  const { tenantSlug } = useParams()
   return (
     <div className="rw-text-center">
       {'No announcements yet. '}
-      <Link to={routes.newAnnouncement()} className="rw-link">
+      <Link to={routes.newAnnouncement({ tenantSlug })} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
