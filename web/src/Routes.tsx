@@ -9,7 +9,8 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import AppLayout from 'src/layouts/AppLayout/AppLayout'
+import AppLayout from 'src/layouts/AppLayout'
+import PublicLayout from 'src/layouts/PublicLayout'
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
 import { useAuth } from './auth'
@@ -38,8 +39,13 @@ const Routes = () => {
         </Set>
         <Route path="/app/{tenantSlug}" page={AppDashboardPage} name="dashboard" />
       </Set>
-      <Route path="/" page={HomePage} name="home" />
-      <Route notfound page={NotFoundPage} />
+      <Set wrap={PublicLayout}>
+        <Route path="/verify/{type}/{identifier}" page={VerifyPage} name="verify" />
+        <Route path="/signup" page={SignupPage} name="signup" />
+        <Route path="/signup/{code}" page={SignupPage} name="signupWithCode" />
+        <Route path="/" page={HomePage} name="home" />
+        <Route notfound page={NotFoundPage} />
+      </Set>
     </Router>
   )
 }
