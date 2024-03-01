@@ -20,10 +20,7 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = ({ id }) => {
   const { client, currentUser } = useAuth()
   const [cu, setCu] = useState(null)
-  console.log({ currentUser })
   useEffect(() => {
-    console.log('lesgo')
-
     const getUser = async () => {
       const c = await client?.auth?.getUser()
       setCu(c)
@@ -32,25 +29,18 @@ export const Empty = ({ id }) => {
     return () => {}
   }, [client])
 
-  // console.log({ user: cu })
-
   const [createUser, { loading, error }] = useMutation(CREATE_USER_MUTATION, {
     onCompleted: () => {
-      console.log('User created')
-
       // toast.success('User created')
       //  navigate(routes.users({ tenantSlug }))
     },
     onError: (error) => {
-      console.log('error', error.message)
+      console.error('error', error.message)
 
       //  toast.error(error.message)
     },
   })
   const onSubmit = (input: CreateUserInput) => {
-    console.log({ cu })
-    console.log({ currentUser })
-
     createUser({ variables: { input: { ...input, id } } })
   }
   return (

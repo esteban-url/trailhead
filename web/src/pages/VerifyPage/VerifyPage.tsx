@@ -49,7 +49,6 @@ const VerifyPage = ({ type, identifier }) => {
         data: response.data,
         loading: false,
       }))
-      // console.log('response.data', response.data)
       // navigate(routes.home())
       return
     }
@@ -57,7 +56,6 @@ const VerifyPage = ({ type, identifier }) => {
   if (state.loading) {
     return <div>Loading...</div>
   }
-  console.log('state', state)
 
   return (
     <>

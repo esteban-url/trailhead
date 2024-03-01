@@ -16,7 +16,6 @@ const supabase = createClient(supabase_url, supabase_key, {
 export const signUp = async ({ input }) => {
   const { type, identifier, name, code } = input
   let obj: { email: string } | { phone: string }
-  console.log('signUp', type, identifier)
 
   if (type === 'email') {
     obj = { email: identifier }
@@ -26,16 +25,13 @@ export const signUp = async ({ input }) => {
   const { data, error } = await supabase.auth.signInWithOtp(obj)
 
   if (error) {
-    console.log('error', error)
+    console.error('error', error)
     return error
   }
 
-  console.log('data', data)
-
   const { user } = data
-  const rrr = await createUser({
+  await createUser({
     input: { id: user.id, name, code, username: name, ...obj },
   })
-  console.log(data, error, rrr)
   return data.user
 }
