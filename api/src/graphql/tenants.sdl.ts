@@ -17,6 +17,7 @@ export const schema = gql`
   }
 
   input CreateTenantInput {
+    id: String
     slug: String!
     name: String!
   }

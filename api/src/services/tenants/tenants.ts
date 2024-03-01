@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import uID from 'src/lib/nanoId'
 
 export const tenants: QueryResolvers['tenants'] = () => {
   return db.tenant.findMany()
@@ -17,6 +18,9 @@ export const tenant: QueryResolvers['tenant'] = ({ id }) => {
 }
 
 export const createTenant: MutationResolvers['createTenant'] = ({ input }) => {
+  if (!input.id) {
+    input.id = uID()
+  }
   return db.tenant.create({
     data: input,
   })

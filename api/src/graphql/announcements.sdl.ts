@@ -17,6 +17,7 @@ export const schema = gql`
   }
 
   input CreateAnnouncementInput {
+    id: String
     tenantId: String!
     userId: String!
     message: String!

@@ -23,6 +23,7 @@ export const schema = gql`
   }
 
   input CreateTenantUserInput {
+    id: String
     userId: String!
     tenantId: String!
     roleId: String!

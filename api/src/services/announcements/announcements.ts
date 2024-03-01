@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import uID from 'src/lib/nanoId'
 
 export const announcements: QueryResolvers['announcements'] = () => {
   return db.announcement.findMany()
@@ -31,6 +32,9 @@ export const announcement: QueryResolvers['announcement'] = ({ id }) => {
 export const createAnnouncement: MutationResolvers['createAnnouncement'] = ({
   input,
 }) => {
+  if (!input.id) {
+    input.id = uID()
+  }
   return db.announcement.create({
     data: input,
   })
