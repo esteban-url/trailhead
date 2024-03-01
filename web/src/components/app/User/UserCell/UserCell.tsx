@@ -16,6 +16,8 @@ export const QUERY: TypedDocumentNode<
     user: user(id: $id) {
       id
       email
+      phone
+      username
       name
       createdAt
       updatedAt

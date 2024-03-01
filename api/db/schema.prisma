@@ -46,9 +46,11 @@ model TenantUser {
 }
 
 model User {
-  id           String         @id() @default(uuid())
-  email        String         @unique
-  name         String
+  id           String         @id()
+  email        String?        @unique
+  phone        String?        @unique
+  username     String?         @unique
+  name         String?
   tenants      TenantUser[]
   Announcement Announcement[]
   createdAt    DateTime       @default(now())

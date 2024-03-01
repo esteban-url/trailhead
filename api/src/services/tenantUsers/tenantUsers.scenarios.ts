@@ -1,4 +1,5 @@
 import type { Prisma, TenantUser } from '@prisma/client'
+
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.TenantUserCreateArgs>({
@@ -11,6 +12,8 @@ export const standard = defineScenario<Prisma.TenantUserCreateArgs>({
             email: 'String3270991',
             name: 'String',
             updatedAt: '2024-02-22T20:01:58.415Z',
+            id: 'String22347',
+            username: 'String22347',
           },
         },
         tenant: {
@@ -30,6 +33,8 @@ export const standard = defineScenario<Prisma.TenantUserCreateArgs>({
             email: 'String9999013',
             name: 'String',
             updatedAt: '2024-02-22T20:01:58.415Z',
+            id: 'String223448',
+            username: 'String223448',
           },
         },
         tenant: {

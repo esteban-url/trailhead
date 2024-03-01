@@ -11,9 +11,14 @@ const SignupPage = ({ code }) => {
     //determine if phone or email
     if (data.identifier.includes('@')) {
       await logIn({ authMethod: 'otp', email: data.identifier })
+
       navigate(routes.verify({ type: 'email', identifier: data.identifier }))
     } else {
-      await logIn({ authMethod: 'otp', phone: data.identifier })
+      await logIn({
+        authMethod: 'otp',
+        phone: data.identifier,
+      })
+
       navigate(routes.verify({ type: 'sms', identifier: data.identifier }))
     }
   }
@@ -34,11 +39,6 @@ const SignupPage = ({ code }) => {
               required
             />
           ) : null}
-          <TextField
-            className="mb-4 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow"
-            placeholder="Name"
-            name="name"
-          />
           <TextField
             className="mb-6 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow"
             placeholder="Phone Number or email"

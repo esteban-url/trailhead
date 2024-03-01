@@ -1,21 +1,20 @@
 import type { Prisma, Tenant } from '@prisma/client'
-
 import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.TenantCreateArgs>({
   tenant: {
     one: {
       data: {
-        slug: 'String1347016',
+        slug: 'String9399661',
         name: 'String',
-        updatedAt: '2024-02-22T01:36:45.268Z',
+        updatedAt: '2024-02-29T20:28:13.081Z',
       },
     },
     two: {
       data: {
-        slug: 'String5687230',
+        slug: 'String2011987',
         name: 'String',
-        updatedAt: '2024-02-22T01:36:45.268Z',
+        updatedAt: '2024-02-29T20:28:13.082Z',
       },
     },
   },

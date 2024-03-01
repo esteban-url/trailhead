@@ -31,25 +31,25 @@ describe('tenants', () => {
   scenario('creates a tenant', async () => {
     const result = await createTenant({
       input: {
-        slug: 'String5101632',
+        slug: 'String8028930',
         name: 'String',
-        updatedAt: '2024-02-22T01:36:45.262Z',
+        updatedAt: '2024-02-29T20:28:13.069Z',
       },
     })
 
-    expect(result.slug).toEqual('String5101632')
+    expect(result.slug).toEqual('String8028930')
     expect(result.name).toEqual('String')
-    expect(result.updatedAt).toEqual(new Date('2024-02-22T01:36:45.262Z'))
+    expect(result.updatedAt).toEqual(new Date('2024-02-29T20:28:13.069Z'))
   })
 
   scenario('updates a tenant', async (scenario: StandardScenario) => {
     const original = (await tenant({ id: scenario.tenant.one.id })) as Tenant
     const result = await updateTenant({
       id: original.id,
-      input: { slug: 'String53631822' },
+      input: { slug: 'String49175032' },
     })
 
-    expect(result.slug).toEqual('String53631822')
+    expect(result.slug).toEqual('String49175032')
   })
 
   scenario('deletes a tenant', async (scenario: StandardScenario) => {

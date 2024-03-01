@@ -47,10 +47,43 @@ const UserForm = (props: UserFormProps) => {
           defaultValue={props.user?.email}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
 
         <FieldError name="email" className="rw-field-error" />
+
+        <Label
+          name="phone"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Phone
+        </Label>
+
+        <TextField
+          name="phone"
+          defaultValue={props.user?.phone}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="phone" className="rw-field-error" />
+
+        <Label
+          name="username"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Username
+        </Label>
+
+        <TextField
+          name="username"
+          defaultValue={props.user?.username}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="username" className="rw-field-error" />
 
         <Label
           name="name"
@@ -65,7 +98,6 @@ const UserForm = (props: UserFormProps) => {
           defaultValue={props.user?.name}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
         />
 
         <FieldError name="name" className="rw-field-error" />

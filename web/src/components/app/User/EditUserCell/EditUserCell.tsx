@@ -20,6 +20,8 @@ export const QUERY: TypedDocumentNode<EditUserById> = gql`
     user: user(id: $id) {
       id
       email
+      phone
+      username
       name
       createdAt
       updatedAt
@@ -27,7 +29,7 @@ export const QUERY: TypedDocumentNode<EditUserById> = gql`
   }
 `
 
-const UPDATE_USER_MUTATION: TypedDocumentNode<
+export const UPDATE_USER_MUTATION: TypedDocumentNode<
   EditUserById,
   UpdateUserMutationVariables
 > = gql`
@@ -35,6 +37,8 @@ const UPDATE_USER_MUTATION: TypedDocumentNode<
     updateUser(id: $id, input: $input) {
       id
       email
+      phone
+      username
       name
       createdAt
       updatedAt

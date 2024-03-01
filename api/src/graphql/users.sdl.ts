@@ -1,8 +1,10 @@
 export const schema = gql`
   type User {
     id: String!
-    email: String!
-    name: String!
+    email: String
+    phone: String
+    username: String
+    name: String
     tenants: [TenantUser]!
     Announcement: [Announcement]!
     createdAt: DateTime!
@@ -15,12 +17,17 @@ export const schema = gql`
   }
 
   input CreateUserInput {
-    email: String!
-    name: String!
+    id: String!
+    email: String
+    phone: String
+    username: String
+    name: String
   }
 
   input UpdateUserInput {
     email: String
+    phone: String
+    username: String
     name: String
   }
 

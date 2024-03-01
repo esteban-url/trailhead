@@ -52,6 +52,8 @@ const UsersList = ({ users }: FindUsers) => {
           <tr>
             <th>Id</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th>Username</th>
             <th>Name</th>
             <th>Created at</th>
             <th>Updated at</th>
@@ -63,6 +65,8 @@ const UsersList = ({ users }: FindUsers) => {
             <tr key={user.id}>
               <td>{truncate(user.id)}</td>
               <td>{truncate(user.email)}</td>
+              <td>{truncate(user.phone)}</td>
+              <td>{truncate(user.username)}</td>
               <td>{truncate(user.name)}</td>
               <td>{timeTag(user.createdAt)}</td>
               <td>{timeTag(user.updatedAt)}</td>

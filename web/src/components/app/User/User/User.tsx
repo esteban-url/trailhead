@@ -63,6 +63,14 @@ const User = ({ user }: Props) => {
               <td>{user.email}</td>
             </tr>
             <tr>
+              <th>Phone</th>
+              <td>{user.phone}</td>
+            </tr>
+            <tr>
+              <th>Username</th>
+              <td>{user.username}</td>
+            </tr>
+            <tr>
               <th>Name</th>
               <td>{user.name}</td>
             </tr>

@@ -11,7 +11,7 @@ import { toast } from '@redwoodjs/web/toast'
 
 import UserForm from 'src/components/app/User/UserForm/UserForm'
 
-const CREATE_USER_MUTATION: TypedDocumentNode<
+export const CREATE_USER_MUTATION: TypedDocumentNode<
   CreateUserMutation,
   CreateUserMutationVariables
 > = gql`
