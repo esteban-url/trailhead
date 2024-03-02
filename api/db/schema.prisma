@@ -28,7 +28,7 @@ model Tenant {
   name            String
   members         TenantUser[]
   announcements   Announcement[]
-  invitationCodes InvitationCode[]
+  inviteCodes InviteCode[]
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 }
@@ -53,7 +53,8 @@ model User {
   username     String?        @unique
   name         String?
   tenants      TenantUser[]
-  Announcement Announcement[]
+  announcements Announcement[]
+  inviteCodes InviteCode[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }
@@ -69,13 +70,12 @@ model Announcement {
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
 }
 
-model InvitationCode {
+model InviteCode {
   id        String   @id() @default(uuid())
-  code      String   @unique
   tenantId  String
-  // userId    String
+  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
-  // user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }

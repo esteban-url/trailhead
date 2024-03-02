@@ -37,6 +37,12 @@ const Routes = () => {
           <Route path="/app/{tenantSlug}/users/{id}" page={AppUserUserPage} name="user" />
           <Route path="/app/{tenantSlug}/users" page={AppUserUsersPage} name="users" />
         </Set>
+        <Set wrap={ScaffoldLayout} title="InviteCodes" titleTo="inviteCodes" buttonLabel="New InviteCode" buttonTo="newInviteCode">
+          <Route path="/app/{tenantSlug}/invites/new" page={AppInviteCodeNewInviteCodePage} name="newInviteCode" />
+          <Route path="/app/{tenantSlug}/invites/{id}/edit" page={AppInviteCodeEditInviteCodePage} name="editInviteCode" />
+          <Route path="/app/{tenantSlug}/invites/{id}" page={AppInviteCodeInviteCodePage} name="inviteCode" />
+          <Route path="/app/{tenantSlug}/invites" page={AppInviteCodeInviteCodesPage} name="inviteCodes" />
+        </Set>
         <Route path="/app/{tenantSlug}" page={AppDashboardPage} name="dashboard" />
       </Set>
       <Set wrap={PublicLayout}>
