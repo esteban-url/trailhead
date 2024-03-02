@@ -17,6 +17,13 @@ export const inviteCode: QueryResolvers['inviteCode'] = ({ id }) => {
   })
 }
 
+export const isValidInviteCode: QueryResolvers['isValidInviteCode'] = async ({
+  id,
+}) => {
+  const invite = await inviteCode({ id })
+  return invite ? true : false
+}
+
 export const createInviteCode: MutationResolvers['createInviteCode'] = async ({
   input,
 }) => {

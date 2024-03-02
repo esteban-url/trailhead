@@ -12,6 +12,7 @@ export const schema = gql`
   type Query {
     inviteCodes: [InviteCode!]! @requireAuth
     inviteCode(id: String!): InviteCode @requireAuth
+    isValidInviteCode(id: String!): Boolean! @skipAuth
   }
 
   input CreateInviteCodeInput {
