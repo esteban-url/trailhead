@@ -8,7 +8,7 @@ import SignupPage from './SignupPage'
 describe('SignupPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<SignupPage />)
+      render(<SignupPage code="asds" />)
     }).not.toThrow()
   })
 })

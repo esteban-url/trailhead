@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import VerifyPage from './VerifyPage'
+import WelcomePage from './WelcomePage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('VerifyPage', () => {
+describe('WelcomePage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<VerifyPage />)
+      render(<WelcomePage id={'2'} />)
     }).not.toThrow()
   })
 })

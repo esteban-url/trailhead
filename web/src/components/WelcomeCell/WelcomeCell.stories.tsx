@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Loading, Empty, Failure, Success } from './VerifyUserCell'
-import { standard } from './VerifyUserCell.mock'
+import { Loading, Empty, Failure, Success } from './WelcomeCell'
+import { standard } from './WelcomeCell.mock'
 
 const meta: Meta = {
-  title: 'Cells/VerifyUserCell',
+  title: 'Cells/WelcomeCell',
   tags: ['autodocs'],
 }
 

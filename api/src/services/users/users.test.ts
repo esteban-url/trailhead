@@ -1,6 +1,14 @@
 import type { User } from '@prisma/client'
 
-import { users, user, createUser, updateUser, deleteUser } from './users'
+import {
+  users,
+  user,
+  createUser,
+  updateUser,
+  deleteUser,
+  signUpUser,
+  userWithTenants,
+} from './users'
 import type { StandardScenario } from './users.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -24,11 +32,40 @@ describe('users', () => {
 
   scenario('creates a user', async () => {
     const result = await createUser({
-      input: { id: 'String3', updatedAt: '2024-02-29T23:49:28.331Z' },
+      input: {
+        id: 'String',
+        email: '234@8787.com',
+        phone: 'String',
+        username: 'Stringdsdssd',
+        name: 'String',
+      },
     })
 
-    expect(result.id).toEqual('String3')
-    expect(result.updatedAt).toEqual(new Date('2024-02-29T23:49:28.331Z'))
+    expect(result.id).toEqual('String')
+    expect(result.email).toEqual('234@8787.com')
+    expect(result.phone).toEqual('String')
+    expect(result.username).toEqual('Stringdsdssd')
+    expect(result.name).toEqual('String')
+  })
+
+  scenario('signs up a user', async () => {
+    const result = await signUpUser({
+      input: {
+        inviteCode: 'invitecode_id_1',
+        email: 'werwer@sdf.com',
+        username: 'Stringdsdssd',
+        name: 'String',
+      },
+    })
+
+    const user = await userWithTenants({ id: '1' })
+
+    expect(user.tenants.length).toEqual(1)
+    expect(user.tenants[0].tenantId).toEqual('tenant_id_1')
+
+    expect(result.email).toEqual('werwer@sdf.com')
+    expect(result.username).toEqual('Stringdsdssd')
+    expect(result.name).toEqual('String')
   })
 
   scenario('updates a user', async (scenario: StandardScenario) => {

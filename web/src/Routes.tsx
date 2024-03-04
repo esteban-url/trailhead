@@ -46,9 +46,10 @@ const Routes = () => {
         <Route path="/app/{tenantSlug}" page={AppDashboardPage} name="dashboard" />
       </Set>
       <Set wrap={PublicLayout}>
-        <Route path="/verify/{type}/{identifier}" page={VerifyPage} name="verify" />
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/signup/{code}" page={SignupPage} name="signupWithCode" />
+        <Route path="/welcome/{id}" page={WelcomePage} name="welcome" />
+
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
       </Set>
