@@ -31,6 +31,7 @@ CREATE TABLE "User" (
     "phone" TEXT,
     "username" TEXT,
     "name" TEXT,
+    "inviteCode" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

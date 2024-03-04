@@ -52,6 +52,7 @@ model User {
   phone        String?        @unique
   username     String?        @unique
   name         String?
+  inviteCode   String?
   tenants      TenantUser[]
   announcements Announcement[]
   inviteCodes InviteCode[]
