@@ -13,7 +13,7 @@ export const inviteCodes: QueryResolvers['inviteCodes'] = () => {
 
 export const inviteCode: QueryResolvers['inviteCode'] = ({ id }) => {
   return db.inviteCode.findUnique({
-    where: { id },
+    where: { id: id.trim().toLowerCase() },
   })
 }
 
