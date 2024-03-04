@@ -40,8 +40,6 @@ const NewInviteCode = () => {
   )
 
   const onSave = (input: CreateInviteCodeInput) => {
-    console.log({ currentUser })
-
     createInviteCode({
       variables: {
         input: {
