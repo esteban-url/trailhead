@@ -7,10 +7,10 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/auth-supabase-setup": "7.0.2",
-    "@redwoodjs/core": "7.0.2",
-    "@redwoodjs/project-config": "7.0.2",
-    "@redwoodjs/realtime": "7.0.2",
+    "@redwoodjs/auth-supabase-setup": "7.0.6",
+    "@redwoodjs/core": "7.0.6",
+    "@redwoodjs/project-config": "7.0.6",
+    "@redwoodjs/realtime": "7.0.6",
     "@redwoodjs/studio": "11",
     "prettier-plugin-tailwindcss": "0.4.1"
   },
