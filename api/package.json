@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "7.0.6",
-    "@redwoodjs/auth-supabase-api": "7.0.6",
-    "@redwoodjs/graphql-server": "7.0.6",
+    "@redwoodjs/api": "7.4.3",
+    "@redwoodjs/auth-supabase-api": "7.4.3",
+    "@redwoodjs/graphql-server": "7.4.3",
     "nanoid": "3"
   }
 }
